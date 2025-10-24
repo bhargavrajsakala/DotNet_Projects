@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Student";
+    var students = ViewBag.ServiceData as List<MVCPro.Models.StudentModel>;
+    bool studentExist = ViewBag.StudentExist ?? false;
+    int newStudentId = ViewBag.id ?? 0;
+}
+
+<h1>Student Home</h1>
+<p>Welcome to the Student section.</p>
+
+<p>
+    <a asp-controller="Student" asp-action="Create">Create new student</a>
+</p>
+
+@if (studentExist)
+{
+    <div class="alert alert-success">
+        Student with ID @newStudentId has been successfully added!
+    </div>
+}
+
+<h2>All Created Students</h2>
+
+@if (students == null || students.Count == 0)
+{
+    <p>No students have been created yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in students)
+            {
+                <tr>
+                    <td>@student.StudentId</td>
+                    <td>@student.Name</td>
+                    <td>@student.Age</td>
+                    <td>@student.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

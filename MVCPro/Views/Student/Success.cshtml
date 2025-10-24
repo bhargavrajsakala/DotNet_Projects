@@ -1,0 +1,12 @@
+@model StudentModel
+
+@if (Model != null)
+{
+    <h1>Student @Model.Name created successfully.</h1>
+}
+else
+{
+    <h1>No student data available.</h1>
+}
+
+@Html.Partial("~/Views/Shared/StudentDetails.cshtml", @Model)
